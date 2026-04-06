@@ -22,13 +22,14 @@
 </head>
 <body>
   <main class="app">
-    <div id="clock">00:00:00</div>
+    <div id="clock">
+      <span id="clockHours">00</span><span id="clockColon">:</span><span id="clockMinutes">00</span>
+    </div>
 
-    <div id="alarmStatus" class="alarm-status">Ingen alarm sat</div>
+    <div id="alarmStatus" class="alarm-status status-idle">Ingen alarm sat</div>
 
     <div class="buttonRow">
       <button class="mainButton" id="openAlarmBtn">Sæt alarm</button>
-      <button class="secondaryButton" id="stopAlarmBtn" style="display:none;">Stop alarm</button>
       <button class="secondaryButton" id="clearAlarmBtn" style="display:none;">Fjern alarm</button>
     </div>
   </main>
@@ -68,6 +69,18 @@
       <div class="modalButtons">
         <button class="secondaryButton" id="cancelAlarmBtn" type="button">Annuller</button>
         <button class="mainButton" id="saveAlarmBtn" type="button">Gem alarm</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="ringingModal" class="modal hidden">
+    <div class="ringingContent">
+      <div class="ringingTitle">ALARM</div>
+      <div id="ringingTime" class="ringingTime">00:00</div>
+
+      <div class="ringingButtons">
+        <button class="dangerButton" id="stopAlarmBtn" type="button">Stop alarm</button>
+        <button class="mainButton" id="snoozeAlarmBtn" type="button">Snooze 10 min</button>
       </div>
     </div>
   </div>
