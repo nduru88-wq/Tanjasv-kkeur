@@ -1,4 +1,4 @@
-const CACHE_NAME = "alarm-app-v6";
+const CACHE_NAME = "alarm-app-v7";
 
 // Alle filer der skal caches
 const FILES_TO_CACHE = [
