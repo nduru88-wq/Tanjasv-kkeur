@@ -7,6 +7,7 @@ html, body {
   color: #fff;
   font-family: Arial, sans-serif;
   overflow: hidden;
+  touch-action: manipulation;
 }
 
 body {
@@ -22,29 +23,234 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 40px;
+  gap: 28px;
+  padding: 24px;
+  box-sizing: border-box;
 }
 
-/* 🕒 STORT UR */
 #clock {
-  font-size: 12vw; /* skalerer med skærm */
-  font-weight: bold;
-  letter-spacing: 4px;
+  font-family: 'Orbitron', Arial, sans-serif;
+  font-size: 12vw;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-align: center;
+  color: #d7faff;
+  text-shadow:
+    0 0 8px rgba(80, 220, 255, 0.55),
+    0 0 18px rgba(80, 220, 255, 0.28);
 }
 
-/* 🔘 KNAP */
+.alarm-status {
+  font-size: 3.5vw;
+  text-align: center;
+  min-height: 1.5em;
+  opacity: 0.95;
+}
+
+.buttonRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
 button {
-  font-size: 4vw;
-  padding: 20px 40px;
   border: none;
-  border-radius: 20px;
-  background: #1e90ff;
-  color: white;
+  border-radius: 18px;
   cursor: pointer;
-  transition: 0.2s;
+  padding: 18px 28px;
+  min-width: 180px;
+  font-size: 3.5vw;
+  font-weight: bold;
+  transition: transform 0.15s ease;
 }
 
 button:active {
-  transform: scale(0.95);
-  background: #187bcd;
+  transform: scale(0.96);
+}
+
+.mainButton {
+  background: #1e90ff;
+  color: white;
+}
+
+.secondaryButton {
+  background: #2a2a2a;
+  color: white;
+  border: 1px solid #555;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  z-index: 1000;
+}
+
+.hidden {
+  display: none;
+}
+
+.modalContent {
+  width: min(92vw, 620px);
+  background: #121212;
+  border-radius: 24px;
+  padding: 28px;
+  box-sizing: border-box;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.45);
+}
+
+.modalContent h2 {
+  margin-top: 0;
+  margin-bottom: 24px;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.timePickerWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 26px;
+}
+
+.timePickerBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.pickerLabel {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.timeSeparator {
+  font-family: 'Orbitron', Arial, sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  margin-top: 28px;
+  color: #d7faff;
+  text-shadow:
+    0 0 8px rgba(80, 220, 255, 0.55),
+    0 0 18px rgba(80, 220, 255, 0.28);
+}
+
+.stepButton {
+  width: 110px;
+  min-width: 110px;
+  height: 72px;
+  padding: 0;
+  font-size: 2.2rem;
+  border-radius: 18px;
+  background: #1e90ff;
+  color: #fff;
+}
+
+.timeValue {
+  width: 140px;
+  text-align: center;
+  font-family: 'Orbitron', Arial, sans-serif;
+  font-size: 3.6rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #d7faff;
+  text-shadow:
+    0 0 8px rgba(80, 220, 255, 0.55),
+    0 0 18px rgba(80, 220, 255, 0.28);
+  background: #0a0a0a;
+  border: 1px solid #2f2f2f;
+  border-radius: 18px;
+  padding: 12px 10px;
+  box-sizing: border-box;
+}
+
+.pickerGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.pickerGroup label {
+  font-size: 1.2rem;
+}
+
+.pickerGroup select {
+  width: 100%;
+  font-size: 1.4rem;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid #444;
+  background: #1d1d1d;
+  color: white;
+  box-sizing: border-box;
+}
+
+.modalButtons {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+@media (max-width: 700px) {
+  #clock {
+    font-size: 16vw;
+  }
+
+  .alarm-status {
+    font-size: 5vw;
+  }
+
+  button {
+    font-size: 5vw;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .modalContent {
+    padding: 22px;
+  }
+
+  .modalContent h2 {
+    font-size: 1.7rem;
+  }
+
+  .timePickerWrap {
+    gap: 10px;
+  }
+
+  .timeSeparator {
+    font-size: 2.7rem;
+    margin-top: 24px;
+  }
+
+  .stepButton {
+    width: 92px;
+    min-width: 92px;
+    height: 64px;
+    font-size: 2rem;
+  }
+
+  .timeValue {
+    width: 110px;
+    font-size: 2.7rem;
+  }
+
+  .pickerGroup label {
+    font-size: 1.05rem;
+  }
+
+  .pickerGroup select {
+    font-size: 1.25rem;
+  }
 }
