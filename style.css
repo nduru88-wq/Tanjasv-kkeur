@@ -14,4 +14,13 @@ body {
 button {
   font-size: 30px;
   padding: 15px 30px;
+  border-radius: 10px;
+  border: none;
+  background-color: lime;
+  color: black;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #aaff00;
 }
