@@ -144,21 +144,24 @@ function triggerAlarm() {
   alarmTriggered = true;
   showRingingModal();
 
-  if (alarmSoundType === "mp3") {
+  if (alarmSoundType === "beep") {
+    startBeepAlarm();
+  } else {
+    alarmSoundEl.pause();
+    alarmSoundEl.src = alarmSoundType;
     alarmSoundEl.currentTime = 0;
     alarmSoundEl.loop = true;
     alarmSoundEl.play().catch((err) => {
-      console.log("Kunne ikke afspille mp3:", err);
+      console.log("Kunne ikke afspille lydfil:", err);
     });
-  } else {
-    startBeepAlarm();
   }
 }
 
 function stopAlarmSoundOnly() {
   alarmSoundEl.pause();
   alarmSoundEl.currentTime = 0;
-  alarmSoundEl.loop = false;
+  alarmSoundEl.removeAttribute("src");
+  alarmSoundEl.load();
 
   if (beepInterval) {
     clearInterval(beepInterval);
