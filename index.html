@@ -2,20 +2,43 @@
 <html lang="da">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
   <title>Vækkeur</title>
+
   <link rel="stylesheet" href="style.css">
   <link rel="manifest" href="manifest.json">
+
   <meta name="theme-color" content="#000000">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Vækkeur">
+
   <link rel="apple-touch-icon" href="icon-192.png">
 </head>
 <body>
 
-<div id="clock">00:00:00</div>
-<button onclick="setAlarm()">Sæt alarm</button>
+  <main class="app">
+    <div id="clock">00:00:00</div>
+    <button onclick="setAlarm()">Sæt alarm</button>
+    <audio id="alarmSound" src="lyd1.mp3"></audio>
+  </main>
 
-<audio id="alarmSound" src="lyd1.mp3"></audio>
+  <script src="script.js"></script>
 
-<script src="script.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./service-worker.js")
+          .then((registration) => {
+            console.log("Service Worker registreret:", registration.scope);
+          })
+          .catch((error) => {
+            console.log("Service Worker fejl:", error);
+          });
+      });
+    }
+  </script>
 
 </body>
 </html>
