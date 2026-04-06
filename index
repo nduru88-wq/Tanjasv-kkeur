@@ -1,1 +1,19 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <title>Vækkeur</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
 
+<div id="clock">00:00:00</div>
+<button onclick="setAlarm()">Sæt alarm</button>
+
+<audio id="alarmSound" src="lyd1.mp3"></audio>
+
+<script src="script.js"></script>
+
+</body>
+</html>
