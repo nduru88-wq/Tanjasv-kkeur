@@ -7,8 +7,16 @@ self.addEventListener("install", e => {
         "/style.css",
         "/script.js",
         "/lyd1.mp3",
-        "/manifest.json"
+        "/manifest.json",
+        "/icon-192.png",
+        "/icon-512.png"
       ]);
     })
+  );
+});
+
+self.addEventListener("fetch", e => {
+  e.respondWith(
+    caches.match(e.request).then(response => response || fetch(e.request))
   );
 });
