@@ -30,21 +30,34 @@ body {
 
 #clock {
   font-family: 'Orbitron', Arial, sans-serif;
-  font-size: 12vw;
+  font-size: 16vw;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   text-align: center;
   color: #d7faff;
   text-shadow:
     0 0 8px rgba(80, 220, 255, 0.55),
     0 0 18px rgba(80, 220, 255, 0.28);
+  line-height: 1;
+}
+
+#clockColon.colon-off {
+  opacity: 0.18;
 }
 
 .alarm-status {
   font-size: 3.5vw;
   text-align: center;
   min-height: 1.5em;
-  opacity: 0.95;
+  font-weight: bold;
+}
+
+.status-idle {
+  color: #35d06f;
+}
+
+.status-set {
+  color: #ff4d4d;
 }
 
 .buttonRow {
@@ -80,10 +93,15 @@ button:active {
   border: 1px solid #555;
 }
 
+.dangerButton {
+  background: #d62828;
+  color: #fff;
+}
+
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.78);
+  background: rgba(0, 0, 0, 0.82);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -202,9 +220,57 @@ button:active {
   margin-top: 10px;
 }
 
+.ringingContent {
+  width: min(94vw, 900px);
+  min-height: min(78vh, 700px);
+  background: #111;
+  border-radius: 32px;
+  padding: 40px 28px;
+  box-sizing: border-box;
+  box-shadow: 0 14px 48px rgba(0,0,0,0.5);
+  border: 2px solid #2b2b2b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 34px;
+}
+
+.ringingTitle {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #ff4d4d;
+  letter-spacing: 0.08em;
+}
+
+.ringingTime {
+  font-family: 'Orbitron', Arial, sans-serif;
+  font-size: 11vw;
+  font-weight: 700;
+  line-height: 1;
+  color: #d7faff;
+  text-shadow:
+    0 0 8px rgba(80, 220, 255, 0.55),
+    0 0 18px rgba(80, 220, 255, 0.28);
+}
+
+.ringingButtons {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ringingButtons button {
+  min-width: 240px;
+  padding: 24px 28px;
+  font-size: 2rem;
+}
+
 @media (max-width: 700px) {
   #clock {
-    font-size: 16vw;
+    font-size: 22vw;
   }
 
   .alarm-status {
@@ -252,5 +318,30 @@ button:active {
 
   .pickerGroup select {
     font-size: 1.25rem;
+  }
+
+  .ringingContent {
+    min-height: 72vh;
+    padding: 28px 20px;
+    gap: 26px;
+  }
+
+  .ringingTitle {
+    font-size: 2.2rem;
+  }
+
+  .ringingTime {
+    font-size: 22vw;
+  }
+
+  .ringingButtons {
+    gap: 14px;
+  }
+
+  .ringingButtons button {
+    width: 100%;
+    min-width: 0;
+    font-size: 1.6rem;
+    padding: 22px 20px;
   }
 }
