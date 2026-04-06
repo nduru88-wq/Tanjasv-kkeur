@@ -4,7 +4,7 @@ let selectedSound = "default";
 
 function updateClock() {
   const now = new Date();
-  const timeString = now.toLocaleTimeString("da-DK");
+  const timeString = now.toLocaleTimeString("da-DK", {hour12: false});
   document.getElementById("clock").textContent = timeString;
 
   if (alarmTime === timeString) {
@@ -19,7 +19,6 @@ function setAlarm() {
   if (!time) return;
 
   let soundChoice = prompt("Skriv '1' for standard lyd eller '2' for lyd1.mp3");
-
   selectedSound = (soundChoice === "2") ? "mp3" : "default";
 
   alarmTime = time;
@@ -28,7 +27,6 @@ function setAlarm() {
 
 function triggerAlarm() {
   alarmTime = null;
-
   let audio;
 
   if (selectedSound === "mp3") {
@@ -46,11 +44,13 @@ function triggerAlarm() {
     audio.pause();
     snoozeTimeout = setTimeout(() => {
       triggerAlarm();
-    }, 10 * 60 * 1000);
+    }, 10 * 60 * 1000); // 10 minutter
   } else {
     audio.pause();
   }
 }
+
+// Register service worker for offline
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('service-worker.js');
 }
