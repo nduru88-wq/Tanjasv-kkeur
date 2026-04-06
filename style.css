@@ -1,1 +1,17 @@
+body {
+  background: black;
+  color: lime;
+  font-family: monospace;
+  text-align: center;
+  margin-top: 100px;
+}
 
+#clock {
+  font-size: 120px;
+  margin-bottom: 40px;
+}
+
+button {
+  font-size: 30px;
+  padding: 15px 30px;
+}
