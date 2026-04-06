@@ -15,14 +15,62 @@
   <meta name="apple-mobile-web-app-title" content="Vækkeur">
 
   <link rel="apple-touch-icon" href="icon-192.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
   <main class="app">
     <div id="clock">00:00:00</div>
-    <button onclick="setAlarm()">Sæt alarm</button>
-    <audio id="alarmSound" src="lyd1.mp3"></audio>
+
+    <div id="alarmStatus" class="alarm-status">Ingen alarm sat</div>
+
+    <div class="buttonRow">
+      <button class="mainButton" id="openAlarmBtn">Sæt alarm</button>
+      <button class="secondaryButton" id="stopAlarmBtn" style="display:none;">Stop alarm</button>
+      <button class="secondaryButton" id="clearAlarmBtn" style="display:none;">Fjern alarm</button>
+    </div>
   </main>
+
+  <audio id="alarmSound" src="lyd1.mp3" preload="auto"></audio>
+
+  <div id="alarmModal" class="modal hidden">
+    <div class="modalContent">
+      <h2>Sæt alarm</h2>
+
+      <div class="timePickerWrap">
+        <div class="timePickerBlock">
+          <div class="pickerLabel">Time</div>
+          <button class="stepButton" id="hourUpBtn" type="button">+</button>
+          <div class="timeValue" id="hourValue">00</div>
+          <button class="stepButton" id="hourDownBtn" type="button">−</button>
+        </div>
+
+        <div class="timeSeparator">:</div>
+
+        <div class="timePickerBlock">
+          <div class="pickerLabel">Minut</div>
+          <button class="stepButton" id="minuteUpBtn" type="button">+</button>
+          <div class="timeValue" id="minuteValue">00</div>
+          <button class="stepButton" id="minuteDownBtn" type="button">−</button>
+        </div>
+      </div>
+
+      <div class="pickerGroup">
+        <label for="soundSelect">Lyd</label>
+        <select id="soundSelect">
+          <option value="beep">Standard alarm</option>
+          <option value="mp3">lyd1.mp3</option>
+        </select>
+      </div>
+
+      <div class="modalButtons">
+        <button class="secondaryButton" id="cancelAlarmBtn" type="button">Annuller</button>
+        <button class="mainButton" id="saveAlarmBtn" type="button">Gem alarm</button>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 
@@ -39,6 +87,5 @@
       });
     }
   </script>
-
 </body>
 </html>
